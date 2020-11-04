@@ -1,0 +1,11 @@
+a	un, uno, una[Article]
+aardvark	cerdo hormiguero
+aardvark	oso hormiguero[Noun]
+aardvarks	cerdos hormigueros
+aardvarks	osos hormigueros
+ab	prefijo que indica separacio/n
+aback	hacia atras
+aback	hacia atr�s,take aback, desconcertar. En facha.
+aback	por sopresa, desprevenidamente, de improviso
+aback	atra/s[Adverb]
+abacterial	abacteriano, sin bacterias

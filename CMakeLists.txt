@@ -3,4 +3,4 @@ project(btreeDisk)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(btreeDisk main.cpp BtreeIndex.h Page.h)
+add_executable(btreeDisk main.cpp BtreeIndex.h Page.h Record.h)
