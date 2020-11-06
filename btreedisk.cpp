@@ -107,9 +107,8 @@ class BTreeDisk{
 			}
 			cout << "2 hear"<<endl;
 			node.keys[index+1] = reg;
-			//cout << node.keys[index+1]<<endl;
 			++(node.n);
-			//cout << node.n << endl;
+			cout << node.n << endl;
 			pm->Write(0, node);
 		}
 		else{
@@ -191,7 +190,7 @@ int main(){
 	// key : data
 	BTreeDisk<int,int> tree("btree.bin");
 	// newnew solo se hace la primera vez bc aun no se que hacer cuando no hay ningun nodo
-	tree.Insert(2);
+	tree.Insert(2,1);
 	tree.Insert(10);
 	tree.Insert(5);
 	cout <<tree.Search(0)<<endl;
