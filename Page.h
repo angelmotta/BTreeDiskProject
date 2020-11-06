@@ -17,7 +17,7 @@ private:
     unsigned int currentKeys;
     /* Pending change for Vector of Records Objects */
     vector<T> keys;    /* MaxCapacity = (2 * t -1) */
-    vector<Record*> m_Reg;
+    vector<Record*> m_Records;
     /* Pending change this for */
     vector<Page<T>*> children;
     bool isLeaf;
