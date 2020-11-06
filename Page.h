@@ -30,6 +30,7 @@ public:
         children.resize(2 * t);
         currentKeys = 0;
     }
+    // temp = temp->children[0] : temp = read(temp->children[0])
     
     // This->node is parent of child Y. This function Split child Y
     void splitChild(Page<T>* nodeY, int idx){
