@@ -2,7 +2,7 @@
 #include "BtreeIndex.h"
 
 int main() {
-    BtreeIndex<string> treeIndex(3);
+    BtreeIndex<Record*> treeIndex(3);
 //    treeIndex.insert("aback");
 //    treeIndex.insert("abacterial");
 //    treeIndex.insert("abacus");

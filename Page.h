@@ -7,6 +7,7 @@
 #include "Record.h"
 using namespace std;
 
+
 template<typename T>
 class BtreeIndex;
 
@@ -17,9 +18,11 @@ private:
     unsigned int currentKeys;
     /* Pending change for Vector of Records Objects */
     vector<T> keys;    /* MaxCapacity = (2 * t -1) */
-    vector<Record*> m_Records;
+    //vector<Record*> m_Records;
     /* Pending change this for */
+    //vector<Page<T>*> children;
     vector<Page<T>*> children;
+    
     bool isLeaf;
 public:
     Page(unsigned int t, bool isLeaf) : t(t), isLeaf(isLeaf) {
@@ -27,7 +30,7 @@ public:
         children.resize(2 * t);
         currentKeys = 0;
     }
-
+    
     // This->node is parent of child Y. This function Split child Y
     void splitChild(Page<T>* nodeY, int idx){
         auto nodeZ = new Page(nodeY->t, nodeY->isLeaf);
@@ -100,11 +103,9 @@ public:
     void printKeys(int level) {
         cout << "Tree level " << level << ": ";
         for (int i = 0; i < currentKeys; i++) {
-            cout << keys[i] << " ";
+            cout << keys[i]->key << " ";
         }
     }
-
-
 
     friend class BtreeIndex<T>;
 };

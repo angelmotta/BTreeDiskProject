@@ -1,4 +1,4 @@
-#ifndef BTREEDISK_BTREEINDEX_H
+       #ifndef BTREEDISK_BTREEINDEX_H
 #define BTREEDISK_BTREEINDEX_H
 #include "Page.h"
 #include "Record.h"
@@ -87,7 +87,7 @@ public:
                     r->offset[i] = end - pdirRecord;  /* Set offset for Language 'i' in Record */
                     // If is new key --> Insert Btree
                     if(isNewWord){
-                        this->insert(r->key);    /* Pending Change this for Record*/
+                        this->insert(r);    /* Pending Change this for Record*/
                     }
                 }
             }
