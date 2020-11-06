@@ -4,7 +4,7 @@
 #include <queue>
 #include <iostream>
 #include <utility>
-
+#include "Record.h"
 using namespace std;
 
 template<typename T>
@@ -15,7 +15,10 @@ class Page{
 private:
     unsigned int t;     /* minDegree */
     unsigned int currentKeys;
-    vector<T> keys;    /* MaxCapacity = (2 * t -1) */  /* Pending change for Vector of Records Objects */
+    /* Pending change for Vector of Records Objects */
+    vector<T> keys;    /* MaxCapacity = (2 * t -1) */
+    vector<Record*> m_Reg;
+    /* Pending change this for */
     vector<Page<T>*> children;
     bool isLeaf;
 public:
