@@ -16,6 +16,7 @@ template<typename TRegistro, unsigned N=3>
 class TNodo{
 public:
 	long id;
+	int t = (N+1)/2;    // grado minimo
 	TRegistro keys[N+1];
 	unsigned int children[N+2];
 	int n;
@@ -27,18 +28,14 @@ public:
 	bool is_leaf(){
 		return leaf;
 	}
-	void Insert(TRegistro reg){
-		if(n<N){
-			keys[n] = reg;
-			++n;
-		}
-	}
+	
 	void print(){
 		for(int i=0; i<n; ++i){
 			cout << keys[i]<<"\t";
 		}
 		cout << endl;
 	}
+	
 };
 
 class Record
@@ -95,8 +92,27 @@ public:
 template<typename Tkey, typename TRegistro, unsigned N=3>
 class BTreeDisk{
 	PageManager<TNodo<TRegistro,N>> *pm;
-	void SplitChild(TNodo<TRegistro,N> &node, int id){
-
+	void SplitChild(TNodo<TRegistro,N> & p,TNodo<TRegistro,N> &node, int idx){
+		TNodo<TRegistro,N> nodeZ;
+		nodeZ.n = p.t-1;
+		for(int i = 0; i < p.t - 1; i++){
+            nodeZ.keys[i] = node.keys[i+t];
+        }
+		if(!node.leaf){
+            for(int i = 0; i < t; i++){
+                nodeZ.children[i] = node.children[i+t];
+            }
+        }
+		node.n = t - 1;
+        for(int i = p.n; i >= idx + 1; i--){
+            p.children[i + 1] = p.children[i];
+        }
+		p.children[idx + 1] = pm->WriteNewNodo(nodeZ);
+		for(int i = p.n - 1; i >= idx; i--){
+            p.keys[i + 1] = p.keys[i];
+        }
+		p.keys[idx] = node.keys[t-1];
+        p.n++;
 	}
 	void InsertNonFull(TNodo<TRegistro,N> &node, TRegistro &reg){
 		int index = node.n - 1;
@@ -118,7 +134,7 @@ class BTreeDisk{
 			TNodo<TRegistro,N> next_node = pm->Read(node.children[index+1]);
 
 			if(next_node.n == N){
-				SplitChild(next_node, index+1);
+				SplitChild(node,next_node, index+1);
 				if(node.keys[index+1] < reg){
 					++index;
 				}
@@ -156,21 +172,21 @@ public:
 			pm->Write(0,r);
 		}
 		else{
-			if(root.n == N+1){
-				TNodo<TRegistro,N> new_nodo;
+			if(root.n == N){
+				TNodo<TRegistro,N> new_nodo;          
 				TNodo<TRegistro,N> aux_r = root;
 
-				new_nodo.children[0] = 0;
-				SplitChild(aux_r,0);
+				//new_nodo.children[0] = 0;
+				new_nodo.children[0] = pm->WriteNewNodo(aux_r);
+
+				SplitChild(new_nodo,aux_r,0);
 
 				int i=0;
 				if(new_nodo.keys[0]< reg)
 					++i;
 				TNodo<TRegistro,N> aux =  pm->Read(new_nodo.children[i]);
 				InsertNonFull(aux, reg);
-
 				pm->Write(0,new_nodo);
-				pm->WriteNewNodo(aux_r);
 			}
 			else{
 				InsertNonFull(root, reg);
