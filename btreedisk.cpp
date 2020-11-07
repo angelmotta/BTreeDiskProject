@@ -7,6 +7,8 @@
 #include <string.h>
 #include <vector>
 #include <optional>
+#include <set>
+#include <queue>
 using namespace std;
 
 
@@ -22,7 +24,7 @@ public:
 	int n;
 	bool leaf;
 	TNodo(){
-		leaf = true;
+		leaf = false;
 		n = 0;
 	}
 	bool is_leaf(){
@@ -58,7 +60,7 @@ public:
     	offset =off;
     }
     void print(){
-    	cout << key;
+    	cout << key <<endl;
     }
 };
 
@@ -98,9 +100,13 @@ public:
 template<typename Tkey, typename TRegistro, unsigned N=3>
 class BTreeDisk{
 	PageManager<TNodo<TRegistro,N>> *pm;
+
 	void SplitChild(TNodo<TRegistro,N> & p,TNodo<TRegistro,N> &node, int idx){
+		cout << "SplitChild "<<endl;
 		TNodo<TRegistro,N> nodeZ;
+		nodeZ.leaf = p.leaf;
 		nodeZ.n = p.t-1;
+
 		for(int i = 0; i < p.t - 1; i++){
             nodeZ.keys[i] = node.keys[i+p.t];
         }
@@ -119,36 +125,38 @@ class BTreeDisk{
         }
 		p.keys[idx] = node.keys[p.t-1];
         p.n++;
+        pm->Write(p.children[idx], node);
 	}
-	void InsertNonFull(TNodo<TRegistro,N> &node, TRegistro &reg){
-		int index = node.n - 1;
-		if(node.leaf){
-			while(index>=0 && node.keys[index]>reg){
-				node.keys[index+1] = node.keys[index];
-				--index;
-			}
-			cout << "2 hear"<<endl;
-			node.keys[index+1] = reg;
-			++(node.n);
-			cout << node.n << endl;
-			pm->Write(0, node);
-		}
-		else{
-			while(index >= 0 && node.keys[index] > reg)
-				--index;
 
-			TNodo<TRegistro,N> next_node = pm->Read(node.children[index+1]);
-
-			if(next_node.n == N){
-				SplitChild(node,next_node, index+1);
-				if(node.keys[index+1] < reg){
-					++index;
+	void InsertNonFull(uint64_t n_node, TRegistro &reg){
+		TNodo<TRegistro,N> node = pm->Read(n_node);
+		int index = node.n-1;
+//		if(node.n != 0){		
+			if(node.leaf){
+				cout << "leaf"<<endl;
+				while(index>=0 && node.keys[index]>reg){
+					node.keys[index+1] = node.keys[index];
+					--index;
 				}
+				node.keys[index+1] = reg;
+				node.n = node.n + 1;
+				pm->Write(n_node,node);
 			}
-			cout << "here"<<endl;
-            TNodo<TRegistro,N> other_node = pm->Read(node.children[index+1]);
-            InsertNonFull(other_node, reg);
-		}
+			else{
+				while(index >= 0 && node.keys[index] > reg)
+					--index;
+
+				TNodo<TRegistro,N> next_node = pm->Read(node.children[index+1]);
+				if(next_node.n == N){
+					SplitChild(node, next_node, index+1);
+					if(node.keys[index+1] < reg){
+						++index;
+					}
+				}
+				pm->Write(n_node, node);
+	            InsertNonFull(node.children[index+1], reg);
+			}
+	//	}
 	}
 public:
 	BTreeDisk(string s){
@@ -156,89 +164,110 @@ public:
 		strcpy(aux, s.c_str());
 		pm = new PageManager<TNodo<TRegistro,N>>(aux);
 	}
+
 	void newnew(){
 		// crea el primer nodo// eliminar mas tarde
 		TNodo<TRegistro,N> nn;
 		nn.leaf = true;
 		pm->WriteNewNodo(nn);
 	}
+
     void inOrder() {
         auto temp = pm->read(0);
         temp.print();
 
     }
-	void Insert(TRegistro reg, bool first = false){
-		// inserta nodo tras nodo
-		//TNodo<TRegistro,N> root = pm->Read(0);
-		//TNodo<TRegistro,N> *nodo_a = new TNodo<TRegistro,N>();
-		//r.Insert(reg);
-		//pm->Write(0,r);
-		//coupmt << pm->WriteNewNodo(*nodo_a)<<endl;
 
+	void Insert(TRegistro reg){
 		TNodo<TRegistro,N> root = pm->Read(0);
-		if(first){
-			cout << "first";
+		if(root.n == 0){
+			cout << "first" <<endl;
 			TNodo<TRegistro,N> r;
-			r.children[0] = reg;
-			++r.n;
-			pm->Write(0,r);
+			r.keys[0] = reg;
+			r.n = 1;
+			r.leaf = true;
+			pm->WriteNewNodo(r);
+			cout << r.n <<endl;
 		}
 		else{
 			if(root.n == N){
-				TNodo<TRegistro,N> new_nodo;          
-				TNodo<TRegistro,N> aux_r = root;
-
-				//new_nodo.children[0] = 0;
-				new_nodo.children[0] = pm->WriteNewNodo(aux_r);
-
-				SplitChild(new_nodo,aux_r,0);
-
-				int i=0;
-				if(new_nodo.keys[0]< reg)
-					++i;
-				TNodo<TRegistro,N> aux =  pm->Read(new_nodo.children[i]);
-				InsertNonFull(aux, reg);
-				pm->Write(0,new_nodo);
+				cout << "insert full"<<endl;
+				TNodo<TRegistro,N> new_root, new_nodo;
+				new_nodo = root;
+				new_root.children[0] = pm->WriteNewNodo(new_nodo);
+				SplitChild(new_root, new_nodo, 0);
+				int idx = 0;
+				if(reg > new_root.keys[0]){
+					++idx;
+				}
+				pm->Write(0, new_root);
+				InsertNonFull(new_root.children[idx],reg);
 			}
 			else{
-				InsertNonFull(root, reg);
-				pm->Write(0, root);
+				InsertNonFull(0, reg);
 			}
 		}
 
 	}
+
 	TRegistro Search(Tkey k){
 		TNodo<TRegistro,N> aux = pm->Read(k*sizeof(TNodo<TRegistro,N>));
 		aux.print();
 		return aux.keys[0];
 	}
+
+	void Print(){
+		set<uint64_t> visitados;
+		queue<uint64_t> q;
+		visitados.insert(0);
+		q.push(0);
+		TNodo<TRegistro,N> node;
+		queue<long> espacios;
+		long espacios_i = 0;
+		espacios.push(0);
+		while(q.size() != 0){
+			node = pm->Read(q.front());
+			node.print();
+			q.pop();
+			for(int i=0; i<=node.n; ++i){
+				auto p = visitados.find(node.children[i]);
+				if(p == visitados.end()){
+					visitados.insert(node.children[i]);
+					q.push(node.children[i]);
+				}
+			}
+			espacios.push(espacios.front() + node.n + 1);
+			if(espacios_i == espacios.front()){
+				cout << '\n';
+				espacios.pop();
+			}
+			else{
+				cout << ' - ';
+			}
+			++espacios_i;
+		}
+		cout << '\n';
+	}
 };
+
 
 int main(){
 	// key : data
 	BTreeDisk<int,int> tree("btree.bin");
-	// newnew solo se hace la primera vez bc aun no se que hacer cuando no hay ningun nodo
-	tree.Insert(2,1);
+
+	tree.Insert(2);
 	tree.Insert(10);
 	tree.Insert(5);
-	cout <<tree.Search(0)<<endl;
+	tree.Search(0);
+	tree.Insert(23);
+	tree.Search(0);
+	tree.Insert(55);
+	tree.Search(0);
+	tree.Insert(12);
+	tree.Search(0);
+	cout << endl;
+	tree.Print();
 	//BTreeDisk<int,Record> tree("btree.bin");
-/*	Record A(121,121);
-	Record B(222,222);
-	Record C(12,122);
-	tree.Insert(A);
-	tree.Search(0);
-	tree.Insert(B);
-	tree.Insert(C);
-	tree.Search(0);
-	*/
-/*	my_data a(111,222), b(1010,2020), c(20,10);
-	cout << tree.Insert(a)<<endl;
 
-	cout << tree.Insert(b)<<endl;
-	cout << tree.Insert(c)<<endl;
-	(tree.Search(0))->print();
-//	(tree.Search(1))->print();
-*/
 	return 0;
 }
