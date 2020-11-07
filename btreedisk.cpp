@@ -28,6 +28,12 @@ public:
 	bool is_leaf(){
 		return leaf;
 	}
+
+	void InOrder(){
+	    for(int i = 0; i < this->n; i++){
+
+	    }
+	}
 	
 	void print(){
 		for(int i=0; i<n; ++i){
@@ -96,14 +102,14 @@ class BTreeDisk{
 		TNodo<TRegistro,N> nodeZ;
 		nodeZ.n = p.t-1;
 		for(int i = 0; i < p.t - 1; i++){
-            nodeZ.keys[i] = node.keys[i+t];
+            nodeZ.keys[i] = node.keys[i+p.t];
         }
 		if(!node.leaf){
-            for(int i = 0; i < t; i++){
-                nodeZ.children[i] = node.children[i+t];
+            for(int i = 0; i < p.t; i++){
+                nodeZ.children[i] = node.children[i+p.t];
             }
         }
-		node.n = t - 1;
+		node.n = p.t - 1;
         for(int i = p.n; i >= idx + 1; i--){
             p.children[i + 1] = p.children[i];
         }
@@ -111,7 +117,7 @@ class BTreeDisk{
 		for(int i = p.n - 1; i >= idx; i--){
             p.keys[i + 1] = p.keys[i];
         }
-		p.keys[idx] = node.keys[t-1];
+		p.keys[idx] = node.keys[p.t-1];
         p.n++;
 	}
 	void InsertNonFull(TNodo<TRegistro,N> &node, TRegistro &reg){
@@ -140,7 +146,8 @@ class BTreeDisk{
 				}
 			}
 			cout << "here"<<endl;
-			InsertNonFull(next_node, reg);
+            TNodo<TRegistro,N> other_node = pm->Read(node.children[index+1]);
+            InsertNonFull(other_node, reg);
 		}
 	}
 public:
@@ -155,6 +162,11 @@ public:
 		nn.leaf = true;
 		pm->WriteNewNodo(nn);
 	}
+    void inOrder() {
+        auto temp = pm->read(0);
+        temp.print();
+
+    }
 	void Insert(TRegistro reg, bool first = false){
 		// inserta nodo tras nodo
 		//TNodo<TRegistro,N> root = pm->Read(0);
