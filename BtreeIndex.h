@@ -14,6 +14,7 @@ template <typename T>
 class BtreeIndex{
 private:
     Page<T>* root;
+    unsigned long int root_disk;
     unsigned int minDegree;    /* maxRecords Capacity = (2 * minDegree) - 1  */
     vector<string> dataFileList = {"../database/testSpanish.txt"};
     unordered_map<string, Record*> mapWords;
@@ -87,7 +88,7 @@ public:
                     r->offset[i] = end - pdirRecord;  /* Set offset for Language 'i' in Record */
                     // If is new key --> Insert Btree
                     if(isNewWord){
-                        this->insert(r->key);    /* Pending Change this for Record*/
+                        this->insert(r);
                     }
                 }
             }
@@ -100,6 +101,51 @@ public:
         cout << "** Print BTree Index **\n";
         if(root) root->recorrerPages();
         cout << '\n';
+    }
+
+    void save(){
+        cout << "** Save Index to Disk\n";
+        if(root){
+            root_disk = root->write();
+        }
+        cout << "root disk: " << root_disk << '\n';
+        cout << '\n';
+    }
+
+    void Find(char * key) {
+        cout << "** Find **\n";
+        ifstream file("../index.dat", ios::binary);
+        file.seekg(1640);
+//        file.seekg(0, ios::end);
+        unsigned long int start = file.tellg();
+        Page<T> test(minDegree, true);
+//        start = start - 822;
+//        file.seekg(start);
+//        file >> pageLoad;
+//        unsigned int test = 100;
+//        file.read((char *)&pageLoad.t, sizeof(pageLoad.t));
+        file.read((char *)&test.t, sizeof(test.t));
+        file.read((char *)&test.currentKeys, sizeof(test.currentKeys));
+        int recordsSizeVector = -1;
+        file.read((char *)&recordsSizeVector, sizeof(recordsSizeVector));
+        for (int i = 0; i < recordsSizeVector; i++) {
+            auto recObj = new Record();
+            file.read((char *)&(*recObj), sizeof(*recObj));
+            test.keys[i] = recObj;
+        }
+        for(int i = 0; i < recordsSizeVector+1; i++){
+            unsigned long int pdirPageChild;
+            file.read((char *)(&(pdirPageChild)), sizeof(pdirPageChild));
+            test.children_pDisk[i] = pdirPageChild;
+        }
+
+        file.close();
+        /*
+        // Read Page from memory
+        for (int i = 0; i < pageLoad.currentKeys; i++) {
+            cout << pageLoad.keys[i]->key << " ";
+        }
+        */
     }
 };
 
