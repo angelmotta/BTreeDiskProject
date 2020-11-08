@@ -117,7 +117,7 @@ public:
         cout << "";
         bool isFindFinished = false;
         ifstream file("../index.dat", ios::binary);
-//        file.seekg(1640);
+//        file.seekg(1642);
         file.seekg(0, ios::end);
         unsigned long int rootDirDisk = file.tellg();
         rootDirDisk = rootDirDisk - 821;   // sizeof(Page in Disk) = 821
