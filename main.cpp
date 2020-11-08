@@ -12,6 +12,6 @@ int main() {
 //    treeIndex.Execute();
 //    treeIndex.print();
 //    treeIndex.save();
-    treeIndex.Find("atas");
+    treeIndex.Find("abandoned");
     return 0;
 }

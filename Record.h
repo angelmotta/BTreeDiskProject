@@ -10,7 +10,16 @@ public:
     unsigned long offset[6] = {0, 0, 0, 0, 0, 0};
 
     friend bool operator> (const Record &r1, const Record &r2){
-        return r1.key > r2.key;
+        string str1(r1.key);
+        string str2(r2.key);
+        //return string(r1.key) > string(r2.key);
+        return str1 > str2;
+    }
+    friend bool operator< (const Record &r1, const Record &r2){
+        string str1(r1.key);
+        string str2(r2.key);
+        //return string(r1.key) > string(r2.key);
+        return str1 < str2;
     }
 };
 

@@ -1,12 +1,3 @@
-###########################################################################
-#Copyright 1999 The Internet Dictionary Project/Tyler Chambers
-#http://www.june29.com/IDP/
-#This file is free to use and modify.  Thank you for using the IDP.
-#
-#Approximately 465 entries. 1/7/98
-#Approximately 910 entries. 3/8/98
-#Approximately 1360 entries. 2/19/99
-###########################################################################
 a	a[Article]
 a	primeira letra do alfabeto.[Article]
 a	uma[Article]
@@ -17,12 +8,12 @@ aback	a\s avessas[Adverb]
 aback	atra/s, detra/s[Adverb]
 aback	para tra/s[Adverb]
 aback	por tra/s[Adverb]
-aback	para trás
+aback	para trï¿½s
 abacus	a/baco[Noun]
-abacus	ábaco(Noun)[Noun]
+abacus	ï¿½baco(Noun)[Noun]
 abacuses	a/bacos[Noun]
-abacuses	ábacos
-abaft	à popa, à ré[Adverb]
+abacuses	ï¿½bacos
+abaft	ï¿½ popa, ï¿½ rï¿½[Adverb]
 abalone	abalone[Noun]
 abalones	abalones[Noun]
 abandon	abandonar, deixar[Verb]
@@ -46,16 +37,16 @@ abased	humilhado[Adjective]
 abased	rebaixado[Adjective]
 abasement	humilhac,a~o[Noun]
 abasement	rebaixamento[Adjective]
-abasement	humilhação
+abasement	humilhaï¿½ï¿½o
 abasements	humilhac,o~es[Noun]
-abasements	humilhação
+abasements	humilhaï¿½ï¿½o
 abash	embarac,ar[Verb]
 abash	envergonhar, confundir[Verb]
 abash	humilhar[Verb]
-abash	embaraçar
+abash	embaraï¿½ar
 abashed	embarac,ado[Adjective]
 abashed	envergonhado, confuso[Adjective]
-abashed	embaraçado
+abashed	embaraï¿½ado
 abashes	embarac,a[Verb]
 abashing	embarac,o[Noun]
 abashment	embarac,o[Noun]
@@ -89,7 +80,7 @@ abbreviation	abreviatura[Noun]
 abbreviations	abreviac,o~es[Noun]
 abbreviator	abreviador[Adjective]
 abc	a/-be^-ce^ ,abecedario , o alfabeto[Noun]
-abdicable	abdicável
+abdicable	abdicï¿½vel
 abdicate	abdicar[Verb]
 abdicated	abdicado[Verb]
 abdication	abdicac,a~o[Noun]
@@ -115,16 +106,16 @@ abductor	raptor[Noun]
 abductors	raptores[Noun]
 abducts	rapta[Verb]
 abeam	atrave/s[Adverb]
-abecedarian	abecedário
+abecedarian	abecedï¿½rio
 abed	na cama[Adverb]
 aberrance	caminho[Noun]
-aberrance	aberração[Noun]
-aberrancy	aberração[Adjective]
+aberrance	aberraï¿½ï¿½o[Noun]
+aberrancy	aberraï¿½ï¿½o[Adjective]
 aberrant	aberrante[Adjective]
 aberrantly	aberrantemente[Adverb]
-aberration	ABERRAÇÃO[Noun]
+aberration	ABERRAï¿½ï¿½O[Noun]
 aberrations	aberrac,o~es[Noun]
-aberrations	aberração[Noun]
+aberrations	aberraï¿½ï¿½o[Noun]
 abet	instagar[Verb]
 abetment	instigac,a~o[Noun]
 abets	instiga[Verb]
@@ -140,7 +131,7 @@ abhorrent	repugnante[Adjective]
 abhorrently	odiosamente[Adverb]
 abhorrer	pessoa odienta[Noun]
 abhors	abominaveis[Verb]
-abidance	permanência[Noun]
+abidance	permanï¿½ncia[Noun]
 abide	agu.entar, conformar-se[Verb]
 abiding	continuac,a~o[Noun]
 abidingly	permanentemente[Adverb]
@@ -148,7 +139,7 @@ abilities	abilidades[Noun]
 ability	abilidade[Noun]
 abiogenesis	abioge/nese[Noun]
 abiogenetic	abiogene/tico[Adjective]
-abiological	abiológico[Adjective]
+abiological	abiolï¿½gico[Adjective]
 abiologically	abiologicamente[Adverb]
 abiotic	abiotico[Noun]
 abject	abjecto[Adjective]
@@ -156,7 +147,7 @@ abjection	abjecc,a~o[Noun]
 abjections	abjecc,o~es[Noun]
 abjectly	abjectamente[Adverb]
 abjectness	vileza , degradac,a~o[Noun]
-abjuration	abjuração[Noun]
+abjuration	abjuraï¿½ï¿½o[Noun]
 abjure	abjurar, renunciar,apostatar[Verb]
 abjurer	abjurante, apo/stata[Noun]
 abjures	abjura[Verb]
@@ -172,7 +163,7 @@ ablutions	abluc,o~es[Noun]
 ably	ha/bilmente[Adverb]
 abnegate	renunciar, abjurar,abnegar[Verb]
 abnegates	abnega[Verb]
-abnegation	abnegação[Noun]
+abnegation	abnegaï¿½ï¿½o[Noun]
 abnegator	abjurador, apo/stata[Noun]
 abnormal	anormal, incomum, ano^malo[Adjective]
 abnormalities	anormalidades[Noun]
@@ -203,7 +194,7 @@ abomination	abominac,a~o, execrac,a~o[Noun]
 abominations	abominac,o~es, execrac,o~es[Noun]
 aboriginal	aboriginal[Adjective]
 aboriginally	originariamente, primitivamente[Adverb]
-aborigine	aborígene
+aborigine	aborï¿½gene
 aborigines	aborigenes, primitivos habitantes de um pais[Noun]
 abort	abortar[Verb]
 aborted	cancelado[Verb]
@@ -242,14 +233,14 @@ abrogated	abrogado[Verb]
 abrogates	abroga[Verb]
 abrogating	abrogando[Verb]
 abrupt	abrupto[Adjective]
-abruption	interrupção brusca
+abruption	interrupï¿½ï¿½o brusca
 abruptly	bruscamente[Adverb]
-abruptness	rudeza, aspereza, indelicadeza, brusquidão
+abruptness	rudeza, aspereza, indelicadeza, brusquidï¿½o
 abscess	abcesso, apostema
 abscissa	abscissa
-abscond	esconder(-se), evadir(-se), fugir à ação da justiça[Verb]
+abscond	esconder(-se), evadir(-se), fugir ï¿½ aï¿½ï¿½o da justiï¿½a[Verb]
 absconder	fugitivo, foragido, desertor
-absence	ausência, afastamento, falta, carência, inatenção
+absence	ausï¿½ncia, afastamento, falta, carï¿½ncia, inatenï¿½ï¿½o
 absences	ausencias[Noun]
 absent	ausente[Adjective]
 absented	ausente
@@ -270,9 +261,9 @@ absorbent	absorvente[Adjective]
 absorber	absorvente[Adjective]
 absorption	absorc,a~o
 abstain	abster-se[Verb]
-abstemious	abstémio[Adjective]
+abstemious	abstï¿½mio[Adjective]
 abstention	abstenc, a~o
-abstinence	abstinência[Noun]
+abstinence	abstinï¿½ncia[Noun]
 abstinent	abstinente[Adjective]
 abstract	abstracto[Adjective]
 abstraction	abstrac,a~o[Noun]
@@ -331,11 +322,11 @@ accordances	acordos[Noun]
 accordingly	de acordo[Adverb]
 action	ac,a~o[Noun]
 actions	ac,o~es
-apple	maçã[Noun]
-apples	maçãs[Noun]
-applicable	aplicável[Adjective]
+apple	maï¿½ï¿½[Noun]
+apples	maï¿½ï¿½s[Noun]
+applicable	aplicï¿½vel[Adjective]
 arabesque	arabesco
-arable	arável
+arable	arï¿½vel
 arachnoid	aranha
 arbitral	arbitral
 arc	arco
@@ -343,7 +334,7 @@ arcade	arcada
 arcane	arcano
 arch	arco
 archaic	arcaico
-archaism	arcaísmo
+archaism	arcaï¿½smo
 archdioceses	arquiocese
 archducal	arqueduque
 archeologist	arqueologista
@@ -353,24 +344,24 @@ article	artigo[Noun]
 attack	ataque[Noun]
 axe	Machado
 babble	balbucio; tagarelice[Noun]
-babble	ruído, falatório, fala confusa[Noun]
+babble	ruï¿½do, falatï¿½rio, fala confusa[Noun]
 babble	balbuciar; tagarelar [Verb]
 babbled	murmurado, comentado,falado[Adjective]
-babe	bebê, meu bem, querida[Noun]
+babe	bebï¿½, meu bem, querida[Noun]
 babe	bebe^
 babes	gajas[Noun]
-babies	bebês, nenens[Noun]
-baboon	babuíno (macaco[Noun]
-babushka	avó, vovó[Noun]
+babies	bebï¿½s, nenens[Noun]
+baboon	babuï¿½no (macaco[Noun]
+babushka	avï¿½, vovï¿½[Noun]
 baby	bebe[Noun]
 baby	nenen[Noun]
 babyhood	primeira infa^ncia[Noun]
 babyish	infantil[Adjective]
-babysitter	babá[Noun]
-babysitters	babás
-babysitting	pagear/ tomar conta de criança[Verb]
+babysitter	babï¿½[Noun]
+babysitters	babï¿½s
+babysitting	pagear/ tomar conta de crianï¿½a[Verb]
 baccalaureate	bacharelado[Noun]
-baccarat	bacará
+baccarat	bacarï¿½
 bacchanal	bacanal[Noun]
 bachelor	solteiro; bacharel[Noun]
 bachelor	celibata/rio[Noun]
@@ -397,32 +388,32 @@ backer	financiador[Noun]
 backer	patrocinador[Noun]
 backers	financiadores[Noun]
 backers	patrocinadores
-backgammon	gamão[Noun]
+backgammon	gamï¿½o[Noun]
 background	fundo de cena, segundo plano; (fig.) formac,a~o, conhecimentos[Noun]
-backhand	costas da mão[Noun]
+backhand	costas da mï¿½o[Noun]
 backhanded	ed
 backing	apoio, auxi/lio, patroci/nio; retrocesso[Noun]
 backlash	recuo[Noun]
 backless	sem volta, sem retorno[Adjective]
-backlog	reserva, acúmulo[Noun]
-backlogs	reservas, acúmulos[Noun]
+backlog	reserva, acï¿½mulo[Noun]
+backlogs	reservas, acï¿½mulos[Noun]
 backpack	mochila
 backpacks	mochilas
-backseat	banco de trás[Noun]
-backside	parte traseira, nádegas, bunda[Noun]
+backseat	banco de trï¿½s[Noun]
+backside	parte traseira, nï¿½degas, bunda[Noun]
 backslide	reincidir[Verb]
 backslider	reincidente[Noun]
 backstage	camarim[Noun]
 backstairs	escada de servic,o[Noun]
 backstitch	pesponto[Noun]
 backstop	batente[Noun]
-backup	cópia (arquivos de computador)[Noun]
-backups	cópias[Noun]
+backup	cï¿½pia (arquivos de computador)[Noun]
+backups	cï¿½pias[Noun]
 backward	atrasado, retro/grado[Adjective]
 backward	para tra/s[Adverb]
-backward	retrógrado, atrasado, em decadência[Adjective]
+backward	retrï¿½grado, atrasado, em decadï¿½ncia[Adjective]
 backwater	remanso, a/gua parada[Noun]
-backwoods	roça
+backwoods	roï¿½a
 backwoods	serta~o, regia~o remota[Noun]
 backyard	quintal[Noun]
 backyards	quintas[Noun]
@@ -457,11 +448,11 @@ bagpiper	gaiteiro, tocador de gaita de foles[Noun]
 bagpipes	gaitas de foles[Noun]
 bags	malas, mochilas, sacolas[Noun]
 bags	sacos, sacas[Noun]
-baguette	bisnaga(pão)
+baguette	bisnaga(pï¿½o)
 bail	fianc,a, cauc,a~o[Noun]
-bail	por em liberdade sob fiança[Verb]
+bail	por em liberdade sob fianï¿½a[Verb]
 bailiff	bailio, alguazil, meirinho[Noun]
-bailiffs	meirinho, oficial de diligências[Noun]
+bailiffs	meirinho, oficial de diligï¿½ncias[Noun]
 bailiwick	bailiado, distrito[Noun]
 bait	atrair, irritar[Verb]
 bait	isca, engodo[Noun]
@@ -500,10 +491,10 @@ bathe	banhar[Verb]
 bitch	cadela, puta (son of a bitch=filho duma puta)[Noun]
 book	livro[Noun]
 boyfriend	namorado
-brain	cérebro[Noun]
-brake	travão[Noun]
+brain	cï¿½rebro[Noun]
+brake	travï¿½o[Noun]
 braked	travado[Adjective]
-brakes	travões[Noun]
+brakes	travï¿½es[Noun]
 c	terceira letra do alfabeto ingle
 c	terceira letra do alfabeto ingle^s[Noun]
 cab	taxi[Noun]
@@ -538,9 +529,9 @@ cacophony	cacofonia[Noun]
 cadastral	cadastral
 cadastre	cadastro
 cadaver	cadaver[Noun]
-cadaveric	cadavérico
+cadaveric	cadavï¿½rico
 cadmium	cadmium
-cafe	café
+cafe	cafï¿½
 cafeteria	cafetaria[Noun]
 caffeine	cafeina[Noun]
 caffeinic	cafeinico
@@ -551,11 +542,11 @@ calamite	Calamidade
 calamities	Calamidades
 calamitous	calamitoso[Adjective]
 calamity	calamidade[Noun]
-calcification	calcificação
+calcification	calcificaï¿½ï¿½o
 calcium	calcio[Noun]
 calculable	calculavel
 calculableness	incalculavel
-calculably	calculável
+calculably	calculï¿½vel
 calculate	calcular[Verb]
 calculated	calculado
 calculating	calculando
@@ -563,7 +554,7 @@ calculation	calculo
 calculator	calculador
 calculators	calculadora
 calendar	calendario[Noun]
-calendars	calendários
+calendars	calendï¿½rios
 calender	calandra
 calf	vitela[Noun]
 calfskin	pele de vitela
@@ -571,18 +562,18 @@ caliber	pano[Noun]
 calibrate	calibrar[Verb]
 calibrated	calibrado
 calibrating	calibrando
-calibration	calibração
+calibration	calibraï¿½ï¿½o
 calibre	calibre
 calico	pano de algodao[Noun]
 call	ligar[Verb]
 called	chamado[Verb]
 calligraph	caligrafia
-calligrapher	calígrafo
+calligrapher	calï¿½grafo
 calling	ligando[Verb]
 callosity	calosidade
 callous	calos
 cambial	cambial
-camel	camêlo
+camel	camï¿½lo
 camera	maquina fotografica[Noun]
 camp	acampar[Verb]
 candidate	candidato[Noun]
@@ -618,9 +609,9 @@ countability	contabilidade[Noun]
 counterespionage	contraespionagem[Noun]
 counterintelligence	contraespionagem[Noun]
 cunt	vagina, cona[Noun]
-cup	taça[Noun]
+cup	taï¿½a[Noun]
 cupidity	cupidez[Adjective]
-cupric	cúprico[Adjective]
+cupric	cï¿½prico[Adjective]
 curator	curador[Noun]
 curatorship	curatela[Noun]
 d	quarta letra do alfabeto
@@ -644,7 +635,7 @@ daintiness	delicadeza[Noun]
 dainty	saboroso[Adjective]
 daiquiri	daiquiri[Noun]
 daiquiris	daiquiris[Noun]
-dairy	LÁCTEO[Adjective]
+dairy	Lï¿½CTEO[Adjective]
 dairy	queijaria[Noun]
 dairyman	leiteiro[Noun]
 dais	plataforma[Noun]
@@ -652,8 +643,8 @@ daisies	margaridas[Noun]
 daisy	bem-me-quer[Noun]
 daisy	MARGARIDA[Noun]
 dale	pequeno vale[Noun]
-dalmatian	DÁLMATA[Noun]
-dalmatians	DÁLMATAS[Noun]
+dalmatian	Dï¿½LMATA[Noun]
+dalmatians	Dï¿½LMATAS[Noun]
 damage	dano[Noun]
 damaged	danificado[Noun]
 damager	danificador[Noun]
@@ -662,10 +653,10 @@ damages	danos[Noun]
 damaging	danoso[Noun]
 damask	damasco[Noun]
 dame	dama[Noun]
-dancer	dançarino[Adjective]
+dancer	danï¿½arino[Adjective]
 dog	cachorro[Noun]
 dog	ca~o[Noun]
-dog	cão[Noun]
+dog	cï¿½o[Noun]
 dogged	persistente[Verb]
 dogma	dogma[Noun]
 dove	pomba[Noun]
@@ -763,7 +754,7 @@ habitants	habitantes[Noun]
 habitat	habitat[Noun]
 habitat	habitat[Noun]
 habitation	habitac,a~o[Noun]
-habitation	habitação
+habitation	habitaï¿½ï¿½o
 habitation	habitac,a~o[Noun]
 habitations	habitac,o~es[Noun]
 habitations	habitac,o~es[Noun]
@@ -849,18 +840,18 @@ keys	chaves[Noun]
 kick	chute[Noun]
 kid	garoto[Noun]
 label	etiqueta[Noun]
-labelable	etiquetável[Adjective]
+labelable	etiquetï¿½vel[Adjective]
 labeled	etiquetado[Adjective]
 labeler	etiquetador[Noun]
 labelers	etiquetadores[Noun]
 labels	etiquetas[Noun]
 labial	labial[Noun]
-labialization	labialização[Noun]
+labialization	labializaï¿½ï¿½o[Noun]
 labialize	labializar[Verb]
 labialized	labializado[Noun]
 labially	de forma labial[Adverb]
-laboratories	laboratórios[Noun]
-laboratory	laboratório[Noun]
+laboratories	laboratï¿½rios[Noun]
+laboratory	laboratï¿½rio[Noun]
 locks	fechaduras[Noun]
 locomotion	locomocao, movimento[Noun]
 locomotive	locomotiva[Noun]
@@ -897,8 +888,8 @@ macroinstruction	macroinstruc,a~o[Noun]
 mad	louco[Noun]
 madam	madame[Noun]
 madness	loucura[Adverb]
-magic	mágico[Noun]
-magical	mágico[Adjective]
+magic	mï¿½gico[Noun]
+magical	mï¿½gico[Adjective]
 magna	magna[Adjective]
 mean	significar[Verb]
 mean	media[Noun]
@@ -945,22 +936,22 @@ napkins	guardanapos[Noun]
 nappies	fraldas[Noun]
 nappy	fralda[Noun]
 narcissism	narcisismo[Noun]
-narcotic	narcótico[Noun]
+narcotic	narcï¿½tico[Noun]
 narrate	narrar[Verb]
 narrated	narrado[Verb]
 narrator	narrador[Noun]
 narrow	estreito[Adjective]
-nasty	malévolo[Adjective]
+nasty	malï¿½volo[Adjective]
 native	nativo[Noun]
 natives	nativos[Noun]
 oak	carvalho[Noun]
 oar	remo[Noun]
-oasis	oásis[Noun]
+oasis	oï¿½sis[Noun]
 oat	aveia[Noun]
 oath	juramento[Noun]
 oatmeal	farinha de aveia[Noun]
 oatmeal	mingau de aveia[Noun]
-obedience	obediência[Noun]
+obedience	obediï¿½ncia[Noun]
 obelisk	obelisco[Noun]
 obese	obeso[Adjective]
 obesity	obesidade[Noun]
@@ -970,7 +961,7 @@ pace	andar a  passo, passear[Verb]
 pacemaker	marca-passos[Noun]
 pacific	pacato[Adjective]
 pacification	pacificac,a~o[Noun]
-pacifier	chupeta de bebê[Noun]
+pacifier	chupeta de bebï¿½[Noun]
 pacifies	pacifica[Verb]
 pacifist	pacifista[Noun]
 pacify	pacificar[Verb]
@@ -990,12 +981,12 @@ parachute	paraquedas[Noun]
 parachuter	paraquedista[Noun]
 paradigm	paradigma[Noun]
 paradise	paraiso[Noun]
-paragraph	parágrafo[Noun]
+paragraph	parï¿½grafo[Noun]
 parallax	paralaxe[Noun]
 parallel	paralelo[Adjective]
 parliament	parlamento[Noun]
-pawn	peão[Noun]
-pawns	peões
+pawn	peï¿½o[Noun]
+pawns	peï¿½es
 play	jogar[Verb]
 play	tocar[Verb]
 pour	pour[Verb]
@@ -1066,7 +1057,7 @@ safeguard	salvaguardar[Verb]
 safeguards	salvaguarda[Noun]
 safekeeping	custodio (accent on first o[Noun]
 safely	seguramente, a salvo
-safely	em segurança[Adverb]
+safely	em seguranï¿½a[Adverb]
 safeness	seguranc,a[Noun]
 safer	mais seguro[Adjective]
 safes	cofres[Noun]
@@ -1328,16 +1319,16 @@ theater	teatro[Noun]
 timber	madeira[Noun]
 time	tempo[Noun]
 times	tempos[Noun]
-timeshare	habitação periódica[Noun]
+timeshare	habitaï¿½ï¿½o periï¿½dica[Noun]
 timetable	agenda[Noun]
 tint	tinta, cor, matiz[Noun]
 tinted	pintado, tingido[Verb]
 tintless	sem cor[Adjective]
 tinware	artigos de folhas de estanho[Noun]
 tiny	diminuto, pequeno, delgado, fino[Adjective]
-tip	ponta, extremidade, bico, inclinação, declive, palpite, dica[Noun]
+tip	ponta, extremidade, bico, inclinaï¿½ï¿½o, declive, palpite, dica[Noun]
 tipple	bebericar, embriagar-se[Verb]
-tiptoe	ponta do pé[Noun]
+tiptoe	ponta do pï¿½[Noun]
 tirade	invectiva, discurso longo[Noun]
 tirades	plural de tirade[Noun]
 tire	aro, virola, pneu, roda[Noun]
@@ -1365,8 +1356,8 @@ you	Voce^, Tu/[Pronoun]
 young	novo, jovem[Adjective]
 youngish	Algo novo[Adverb]
 youngness	mocidade, juventude[Noun]
-youngster	moço, jovem, rapaz, mancebo[Noun]
-youngsters	moços, jovens, rapazes, mancebos[Noun]
+youngster	moï¿½o, jovem, rapaz, mancebo[Noun]
+youngsters	moï¿½os, jovens, rapazes, mancebos[Noun]
 your	teu, tua, teus, tuas[Pronoun]
 yours	o teu, a tua, os teus, as tuas[Pronoun]
 yourself	tu mesmo, te[Pronoun]

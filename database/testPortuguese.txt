@@ -1,6 +1,100 @@
+a	a[Article]
+a	primeira letra do alfabeto.[Article]
+a	uma[Article]
+a	um[Article]
 aardvark	oricterope, porco-da-terra[Noun]
 aardvarks	porco-da-terra, oricterope
 aback	a\s avessas[Adverb]
 aback	atra/s, detra/s[Adverb]
 aback	para tra/s[Adverb]
 aback	por tra/s[Adverb]
+aback	para tr�s
+abacus	a/baco[Noun]
+abacus	�baco(Noun)[Noun]
+abacuses	a/bacos[Noun]
+abacuses	�bacos
+abaft	� popa, � r�[Adverb]
+abalone	abalone[Noun]
+abalones	abalones[Noun]
+abandon	abandonar, deixar[Verb]
+abandon	abandonar[Verb]
+abandon	abandono[Noun]
+abandoned	abandonado
+abandoned	abandonado; dissoluto, imoral
+abandonee	abandonado
+abandoner	abandonador
+abandoning	abandonando
+abandonment	abandonamento
+abandonment	abandono, disamparo[Noun]
+abandonment	renu/cia[Noun]
+abandonment	abandono[Noun]
+abandonments	abandonamentos
+abandons	abandonos
+abase	humilhar[Verb]
+abase	rebaixar[Verb]
+abased	abater[Verb]
+abased	humilhado[Adjective]
+abased	rebaixado[Adjective]
+abasement	humilhac,a~o[Noun]
+abasement	rebaixamento[Adjective]
+abasement	humilha��o
+abasements	humilhac,o~es[Noun]
+abasements	humilha��o
+abash	embarac,ar[Verb]
+abash	envergonhar, confundir[Verb]
+abash	humilhar[Verb]
+abash	embara�ar
+abashed	embarac,ado[Adjective]
+abashed	envergonhado, confuso[Adjective]
+abashed	embara�ado
+abashes	embarac,a[Verb]
+abashing	embarac,o[Noun]
+abashment	embarac,o[Noun]
+abasing	humilhac,ao[Noun]
+abate	abater, diminuir; amainar[Verb]
+abate	enfraquecer[Verb]
+abated	enfraquecido[Adjective]
+abatement	enfraquecimento[Noun]
+abatements	enfraquecimentos[Noun]
+abater	abater
+abater	abater
+abates	enfraquecer, decrescer[Verb]
+abating	enfraquecendo, decrescendo[Verb]
+abattoir	matadouro[Noun]
+abbacy	abadia
+abbe	abade[Noun]
+abberations	aberrac,o~es[Noun]
+abbey	abadia
+abbey	abadia[Noun]
+abbeys	abadias[Noun]
+abbot	padre, or abade[Noun]
+abbots	abades[Noun]
+abbots	the abbots
+abbreviate	abreviar[Verb]
+abbreviated	abreviado[Adjective]
+abbreviates	abrevia[Verb]
+abbreviates	amor[Pronoun]
+abbreviating	abreviando[Verb]
+abbreviation	abreviac,ao[Noun]
+abbreviation	abreviatura[Noun]
+abbreviations	abreviac,o~es[Noun]
+abbreviator	abreviador[Adjective]
+abc	a/-be^-ce^ ,abecedario , o alfabeto[Noun]
+abdicable	abdic�vel
+abdicate	abdicar[Verb]
+abdicated	abdicado[Verb]
+abdication	abdicac,a~o[Noun]
+abdicator	abdicante[Adjective]
+abdomen	abdo^men[Noun]
+abdomens	abdo^mens[Noun]
+abdominal	abdominal
+abdominal	abdominal[Pronoun]
+abdominally	abdominalmente[Adverb]
+abdominally	loved
+abduce	separar, desviar[Verb]
+abduced	separado, desviado[Verb]
+abducens	abducente[Noun]
+abducent	abducente[Adjective]
+abducentes	abducents
+abducing	abduzindo[Verb]
+abduct	sequestrar[Verb]

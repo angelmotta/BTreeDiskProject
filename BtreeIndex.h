@@ -16,7 +16,7 @@ private:
     Page<T>* root;
     unsigned long int root_disk;
     unsigned int minDegree;    /* maxRecords Capacity = (2 * minDegree) - 1  */
-    vector<string> dataFileList = {"../database/testSpanish.txt"};
+    vector<string> dataFileList = {"../database/testSpanish.txt", "../database/testPortuguese.txt"};
     unordered_map<string, Record*> mapWords;
 public:
     BtreeIndex(unsigned int minDegree) : minDegree(minDegree), root(nullptr) {};
@@ -126,6 +126,7 @@ public:
         Page<T> pageLoad(minDegree, true);
         // START WHILE
         while(!isFindFinished){
+            ChildPageSelected = false;
             file.seekg(rootDirDisk);
             file.read((char *)&pageLoad.t, sizeof(pageLoad.t));
             file.read((char *)&pageLoad.currentKeys, sizeof(pageLoad.currentKeys));
@@ -178,7 +179,7 @@ public:
                     isFound = true;
                     break;
                 }
-                else if(key < pageLoad.keys[i]->key){
+                else if(key < string(pageLoad.keys[i]->key)){
                     cout << "\nRead from disk Child Page[" << i << "]" << "\n";
                     // TODO
                     if(!pageLoad.isLeaf){
