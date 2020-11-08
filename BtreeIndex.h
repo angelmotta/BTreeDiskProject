@@ -115,68 +115,78 @@ public:
     void Find(string key) {
         cout << "** Find **\n";
         cout << "";
+        bool isFindFinished = false;
         ifstream file("../index.dat", ios::binary);
 //        file.seekg(1640);
         file.seekg(0, ios::end);
         unsigned long int rootDirDisk = file.tellg();
-        rootDirDisk = rootDirDisk - 820;   // sizeof(Page in Disk) = 820
+        rootDirDisk = rootDirDisk - 821;   // sizeof(Page in Disk) = 821
         Page<T> pageLoad(minDegree, true);
-        file.seekg(rootDirDisk);
-//        file >> pageLoad;
-//        unsigned int test = 100;
-//        file.read((char *)&pageLoad.t, sizeof(pageLoad.t));
-        file.read((char *)&pageLoad.t, sizeof(pageLoad.t));
-        file.read((char *)&pageLoad.currentKeys, sizeof(pageLoad.currentKeys));
-        int recordsSizeVector = -1;
-        file.read((char *)&recordsSizeVector, sizeof(recordsSizeVector));
-        for (int i = 0; i < recordsSizeVector; i++) {
-            auto recObj = new Record();
-            file.read((char *)&(*recObj), sizeof(*recObj));
-            pageLoad.keys[i] = recObj;
-        }
-        for(int i = 0; i < recordsSizeVector+1; i++){
-            unsigned long int pdirPageChild;
-            file.read((char *)(&(pdirPageChild)), sizeof(pdirPageChild));
-            pageLoad.children_pDisk[i] = pdirPageChild;
-        }
+        // START WHILE
+        while(!isFindFinished){
+            file.seekg(rootDirDisk);
+            file.read((char *)&pageLoad.t, sizeof(pageLoad.t));
+            file.read((char *)&pageLoad.currentKeys, sizeof(pageLoad.currentKeys));
+            int recordsSizeVector = -1;
+            file.read((char *)&recordsSizeVector, sizeof(recordsSizeVector));
+            for (int i = 0; i < recordsSizeVector; i++) {
+                auto recObj = new Record();
+                file.read((char *)&(*recObj), sizeof(*recObj));
+                pageLoad.keys[i] = recObj;
+            }
+            for(int i = 0; i < recordsSizeVector+1; i++){
+                unsigned long int pdirPageChild;
+                file.read((char *)(&(pdirPageChild)), sizeof(pdirPageChild));
+                pageLoad.children_pDisk[i] = pdirPageChild;
+            }
+            file.read((char *)&pageLoad.isLeaf, sizeof(pageLoad.isLeaf));
+//            file.close();
 
-        file.close();
-
-        // Read keys from Page in memory
-        cout << "Read Keys from Page\n";
-        for (int i = 0; i < pageLoad.currentKeys; i++) {
-            cout << pageLoad.keys[i]->key << " ";
-            // Check if keys are equals
-            if(pageLoad.keys[i]->key == key){
-                cout << "\nKeyword Found!!\n";
-                // Read Definition from Disk using index
-                for(int idx = 0; idx < dataFileList.size(); idx++){    // for each Language
-                    if(pageLoad.keys[i]->pdir[i] == -1) continue;     //  if word not have entry in that Language continue to next Language
-                    cout << getIdioma(i) << ": "<< '\n';
-                    ifstream file(dataFileList[i], ios::binary);
-                    file.seekg(pageLoad.keys[i]->pdir[i]);
-                    string buf;
-                    int of;
-                    int temp = pageLoad.keys[i]->offset[i];
-                    int temp2;
-                    int numResult = 1;
-                    while(temp){    // read offset for this language
-                        of = file.tellg();  //posicion antes del key
-                        getline(file,buf,'\t');
-                        temp2 = file.tellg(); //posicion despues del key == inicio del significado
-                        temp -= (temp2 - of);
-                        getline(file,buf);    // leer toda la segunda parte linea (significado)
-                        of = file.tellg();  // posicion despues del significado
-                        cout << numResult++ << ") " << buf << endl;
-                        temp -=  (of-temp2);
+            // Read keys from Page in memory
+            cout << "Read Keys from Page\n";
+            for (int i = 0; i < pageLoad.currentKeys; i++) {
+                cout << pageLoad.keys[i]->key << " ";
+                // Check if keys are equals
+                if(pageLoad.keys[i]->key == key){
+                    cout << "\nKeyword Found!!\n";
+                    // Read Definition from Disk using index
+                    for(int idx = 0; idx < dataFileList.size(); idx++){    // for each Language
+                        if(pageLoad.keys[i]->offset[idx] == 0) continue;     //  if word not have entry in that Language continue to next Language
+                        cout << getIdioma(idx) << ": "<< '\n';
+                        ifstream file(dataFileList[idx], ios::binary);
+                        file.seekg(pageLoad.keys[i]->pdir[idx]);
+                        string buf;
+                        int of;
+                        int temp = pageLoad.keys[i]->offset[idx];
+                        int temp2;
+                        int numResult = 1;
+                        while(temp){    // read offset for this language
+                            of = file.tellg();  //posicion antes del key
+                            getline(file,buf,'\t');
+                            temp2 = file.tellg(); //posicion despues del key == inicio del significado
+                            temp -= (temp2 - of);
+                            getline(file,buf);    // leer toda la segunda parte linea (significado)
+                            of = file.tellg();  // posicion despues del significado
+                            cout << numResult++ << ") " << buf << endl;
+                            temp -=  (of-temp2);
+                        }
                     }
+                    isFindFinished = true;
+                    break;
                 }
-                break;
-            }
-            else if(key < pageLoad.keys[i]->key){
-                cout << "\nRead from disk Child Page[" << i << "]" << "\n";
-                // TODO
-            }
+                else if(key < pageLoad.keys[i]->key){
+                    cout << "\nRead from disk Child Page[" << i << "]" << "\n";
+                    // TODO
+                    if(!pageLoad.isLeaf){
+                        // READ child Page from Disk
+                        rootDirDisk = pageLoad.children_pDisk[0];
+                    }
+                    else{
+                        isFindFinished = true;
+                    }
+                    break;
+                }
+            } // End For Loop for this Page
         }
         cout << '\n';
     }

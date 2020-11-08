@@ -135,7 +135,7 @@ public:
         for (int i = 0; i < this->children_pDisk.size(); i++) {
             file.write((char *)(&(children_pDisk[i])), sizeof(children_pDisk[i])); // dirDisk_ChildrenPage
         }
-
+        file.write((char*)&(*this).isLeaf, sizeof((*this).isLeaf));       // boolIsLeaf
         file.close();
         return start;
     }
