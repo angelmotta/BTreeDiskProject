@@ -119,14 +119,13 @@ public:
         ofstream file("../index.dat", ios::out | ios::binary | ios::app);
         unsigned long int start = file.tellp();
         cout << "Page Start byte disk: " << start << '\n';
-        //file.write((char*)&(*this), sizeof(*this));    /* Check this */
-        file.write((char*)&(*this).t, sizeof((*this).t));
-        file.write((char*)&(*this).currentKeys, sizeof((*this).currentKeys));
+        file.write((char*)&(*this).t, sizeof((*this).t));       // MinDegree
+        file.write((char*)&(*this).currentKeys, sizeof((*this).currentKeys));   // currentNumberRecords
         int recordsSize = this->keys.size();
-        file.write((char*)&recordsSize, sizeof(recordsSize));
+        file.write((char*)&recordsSize, sizeof(recordsSize));   // SizeVector Records
         for (int i = 0; i < this->keys.size(); i++) {
             if(keys[i]){
-                file.write((char *)(&(*keys[i])), sizeof(*keys[i]));
+                file.write((char *)(&(*keys[i])), sizeof(*keys[i]));  // Record
             }
             else {
                 auto recObj = Record();
@@ -134,21 +133,11 @@ public:
             }
         }
         for (int i = 0; i < this->children_pDisk.size(); i++) {
-            file.write((char *)(&(children_pDisk[i])), sizeof(children_pDisk[i]));
+            file.write((char *)(&(children_pDisk[i])), sizeof(children_pDisk[i])); // dirDisk_ChildrenPage
         }
 
-        /*Page<T> pageObj = *this;
-        file << pageObj;
-         */
         file.close();
-
         return start;
-        /*cout << "Write Page to Disk\n";
-        for (int i = 0; i < currentKeys; i++) {
-            cout << keys[i]->key << " ";
-        }
-        cout << '\n';
-         */
     }
 
     friend class BtreeIndex<T>;
