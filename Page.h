@@ -4,6 +4,8 @@
 #include <queue>
 #include <iostream>
 #include <utility>
+#include <fstream>
+#include "Record.h"
 
 using namespace std;
 
@@ -15,13 +17,19 @@ class Page{
 private:
     unsigned int t;     /* minDegree */
     unsigned int currentKeys;
-    vector<T> keys;    /* MaxCapacity = (2 * t -1) */  /* Pending change for Vector of Records Objects */
+    vector<T> keys;    /* Vector of Records* MaxCapacity = (2 * t -1) */
     vector<Page<T>*> children;
+    vector<unsigned long int> children_pDisk;
     bool isLeaf;
+    template <typename TT>
+    friend std::ostream& operator <<(std::ostream & stream, Page<TT> & record);
+    template <typename TT>
+    friend std::istream& operator >>(std::istream & stream, Page<TT> & record);
 public:
     Page(unsigned int t, bool isLeaf) : t(t), isLeaf(isLeaf) {
         keys.resize(2 * t - 1);    /* Capacity = (2*t - 1)*/
         children.resize(2 * t);
+        children_pDisk.resize(2 * t);
         currentKeys = 0;
     }
 
@@ -97,13 +105,94 @@ public:
     void printKeys(int level) {
         cout << "Tree level " << level << ": ";
         for (int i = 0; i < currentKeys; i++) {
-            cout << keys[i] << " ";
+            cout << keys[i]->key << " ";
         }
     }
 
-
+    unsigned long int write(){
+        for (int i = 0; i <= currentKeys; i++) {
+            if(children[i] != nullptr){
+                this->children_pDisk[i] = children[i]->write();
+            }
+        }
+        // Write Page
+        ofstream file("../index.dat", ios::out | ios::binary | ios::app);
+        unsigned long int start = file.tellp();
+        cout << "Page Start byte disk: " << start << '\n';
+        file.write((char*)&(*this).t, sizeof((*this).t));       // MinDegree
+        file.write((char*)&(*this).currentKeys, sizeof((*this).currentKeys));   // currentNumberRecords
+        int recordsSize = this->keys.size();
+        file.write((char*)&recordsSize, sizeof(recordsSize));   // SizeVector Records
+        for (int i = 0; i < this->keys.size(); i++) {
+            if(keys[i]){
+                file.write((char *)(&(*keys[i])), sizeof(*keys[i]));  // Record
+            }
+            else {
+                auto recObj = Record();
+                file.write((char *)(&recObj), sizeof(recObj));
+            }
+        }
+        for (int i = 0; i < this->children_pDisk.size(); i++) {
+            file.write((char *)(&(children_pDisk[i])), sizeof(children_pDisk[i])); // dirDisk_ChildrenPage
+        }
+        file.write((char*)&(*this).isLeaf, sizeof((*this).isLeaf));       // boolIsLeaf
+        file.close();
+        return start;
+    }
 
     friend class BtreeIndex<T>;
 };
+
+// Overload operator | Write file Operation << object
+template <typename T>
+std::ostream & operator << (std::ostream & stream, Page<T> & pageObj) {
+    stream.write((char *)(&pageObj.t), sizeof(pageObj.t));
+    stream.write((char *)(&pageObj.currentKeys),  pageObj.currentKeys);
+    int recordsSize = pageObj.keys.size();
+    stream.write((char *)(&recordsSize), sizeof(recordsSize));  // number of Vector size Records
+    /*
+    for(auto record : pageObj.keys){
+        if(record){
+            stream.write((char *)(&(*record)), sizeof(*record));    // dereference and save Record Object
+        }
+        else{
+            Record r = Record();
+            stream.write((char *)(&(r)), sizeof(r));    // dereference and save Record Object
+        }
+    }
+    int childrenSize = pageObj.children_pDisk.size();
+    stream.write((char *)(&childrenSize), sizeof(childrenSize));  // number of Vector Size
+    for(auto pdirDisk : pageObj.children_pDisk){
+        stream.write((char *)(&(pdirDisk)), sizeof(pdirDisk));
+    }
+    */
+    stream << std::flush;
+    return stream;
+}
+
+
+// Overload operator | Read file operation >> object
+template <typename T>
+std::istream& operator >> (std::istream& stream, Page<T> & pageObj) {
+    stream.read(reinterpret_cast<char *>(&pageObj.t), sizeof(pageObj.t));   // read Metadata: get size
+    stream.read(reinterpret_cast<char *>(&pageObj.currentKeys), sizeof(pageObj.currentKeys));   // use this size to read real value
+    int recordsSize;
+    stream.read(reinterpret_cast<char *>(&recordsSize), sizeof(recordsSize));
+    /*
+    auto r = new Record();
+    for(int i = 0; i < recordsSize; i++){ //pageObj.keys[i]
+        stream.read(reinterpret_cast<char *>(&(*r)), sizeof(*r));
+        pageObj.keys[i] = r;
+    }
+    int childrenSize;
+    stream.read(reinterpret_cast<char *>(&childrenSize), sizeof(childrenSize));
+    unsigned long int pdirChildPage;
+    for(int i = 0; i < childrenSize; i++){
+        stream.read((char *)(&(pdirChildPage)), sizeof(pdirChildPage));
+        pageObj.children_pDisk[i] = pdirChildPage;
+    }
+    */
+    return stream;
+}
 
 #endif //BTREEDISK_PAGE_H

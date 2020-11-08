@@ -14,8 +14,9 @@ template <typename T>
 class BtreeIndex{
 private:
     Page<T>* root;
+    unsigned long int root_disk;
     unsigned int minDegree;    /* maxRecords Capacity = (2 * minDegree) - 1  */
-    vector<string> dataFileList = {"../database/testSpanish.txt"};
+    vector<string> dataFileList = {"../database/testSpanish.txt", "../database/testPortuguese.txt"};
     unordered_map<string, Record*> mapWords;
 public:
     BtreeIndex(unsigned int minDegree) : minDegree(minDegree), root(nullptr) {};
@@ -87,7 +88,7 @@ public:
                     r->offset[i] = end - pdirRecord;  /* Set offset for Language 'i' in Record */
                     // If is new key --> Insert Btree
                     if(isNewWord){
-                        this->insert(r->key);    /* Pending Change this for Record*/
+                        this->insert(r);
                     }
                 }
             }
@@ -100,6 +101,119 @@ public:
         cout << "** Print BTree Index **\n";
         if(root) root->recorrerPages();
         cout << '\n';
+    }
+
+    void save(){
+        cout << "** Save Index to Disk\n";
+        if(root){
+            root_disk = root->write();
+        }
+        cout << "root disk: " << root_disk << '\n';
+        cout << '\n';
+    }
+
+    void Find(string key) {
+        cout << "** Find **\n";
+        cout << "";
+        bool isFindFinished = false;
+        bool isFound = false;
+        bool ChildPageSelected = false;
+        ifstream file("../index.dat", ios::binary);
+//        file.seekg(1642);
+        file.seekg(0, ios::end);
+        unsigned long int rootDirDisk = file.tellg();
+        rootDirDisk = rootDirDisk - 821;   // sizeof(Page in Disk) = 821
+        Page<T> pageLoad(minDegree, true);
+        // START WHILE
+        while(!isFindFinished){
+            ChildPageSelected = false;
+            file.seekg(rootDirDisk);
+            file.read((char *)&pageLoad.t, sizeof(pageLoad.t));
+            file.read((char *)&pageLoad.currentKeys, sizeof(pageLoad.currentKeys));
+            int recordsSizeVector = -1;
+            file.read((char *)&recordsSizeVector, sizeof(recordsSizeVector));
+            for (int i = 0; i < recordsSizeVector; i++) {
+                auto recObj = new Record();
+                file.read((char *)&(*recObj), sizeof(*recObj));
+                pageLoad.keys[i] = recObj;
+            }
+            for(int i = 0; i < recordsSizeVector+1; i++){
+                unsigned long int pdirPageChild;
+                file.read((char *)(&(pdirPageChild)), sizeof(pdirPageChild));
+                pageLoad.children_pDisk[i] = pdirPageChild;
+            }
+            file.read((char *)&pageLoad.isLeaf, sizeof(pageLoad.isLeaf));
+//            file.close();
+
+            // Read keys from Page in memory
+            cout << "Read Keys from Page\n";
+            int i;
+            for (i = 0; i < pageLoad.currentKeys; i++) {
+                cout << pageLoad.keys[i]->key << " ";
+                // Check if keys are equals
+                if(pageLoad.keys[i]->key == key){
+                    cout << "\nKeyword Found!!\n";
+                    // Read Definition from Disk using index
+                    for(int idx = 0; idx < dataFileList.size(); idx++){    // for each Language
+                        if(pageLoad.keys[i]->offset[idx] == 0) continue;     //  if word not have entry in that Language continue to next Language
+                        cout << getIdioma(idx) << ": "<< '\n';
+                        ifstream file(dataFileList[idx], ios::binary);
+                        file.seekg(pageLoad.keys[i]->pdir[idx]);
+                        string buf;
+                        int of;
+                        int temp = pageLoad.keys[i]->offset[idx];
+                        int temp2;
+                        int numResult = 1;
+                        while(temp){    // read offset for this language
+                            of = file.tellg();  //posicion antes del key
+                            getline(file,buf,'\t');
+                            temp2 = file.tellg(); //posicion despues del key == inicio del significado
+                            temp -= (temp2 - of);
+                            getline(file,buf);    // leer toda la segunda parte linea (significado)
+                            of = file.tellg();  // posicion despues del significado
+                            cout << numResult++ << ") " << buf << endl;
+                            temp -=  (of-temp2);
+                        }
+                    }
+                    isFindFinished = true;
+                    isFound = true;
+                    break;
+                }
+                else if(key < string(pageLoad.keys[i]->key)){
+                    cout << "\nRead from disk Child Page[" << i << "]" << "\n";
+                    // TODO
+                    if(!pageLoad.isLeaf){
+                        // READ child Page from Disk
+                        rootDirDisk = pageLoad.children_pDisk[i];
+                        ChildPageSelected = true;
+                    }
+                    else{
+                        isFindFinished = true;
+                    }
+                    break;
+                }
+            } // End For Loop for this Page
+            // Si llegaste al ultimo record del page --> go to last child Page
+            //if(i == pageLoad.currentKeys && !isFound && !pageLoad.isLeaf && !ChildPageSelected){
+            if(i == pageLoad.currentKeys && !isFound && !ChildPageSelected){
+                if(!pageLoad.isLeaf){
+                    cout << "Go child Right\n";
+                    rootDirDisk = pageLoad.children_pDisk[i];
+                }
+                else{
+                    break;
+                }
+            }
+        } // end While
+        if(!isFound){
+            cout << "\n Keyword Not found =( \n";
+            cout << '\n';
+        }
+    }
+
+    string getIdioma(int idx){
+        vector<string> languageArr = {"Spanish", "Portuguese", "French", "Latin", "German", "Italian"};
+        return languageArr[idx];
     }
 };
 
