@@ -116,6 +116,8 @@ public:
         cout << "** Find **\n";
         cout << "";
         bool isFindFinished = false;
+        bool isFound = false;
+        bool ChildPageSelected = false;
         ifstream file("../index.dat", ios::binary);
 //        file.seekg(1642);
         file.seekg(0, ios::end);
@@ -144,7 +146,8 @@ public:
 
             // Read keys from Page in memory
             cout << "Read Keys from Page\n";
-            for (int i = 0; i < pageLoad.currentKeys; i++) {
+            int i;
+            for (i = 0; i < pageLoad.currentKeys; i++) {
                 cout << pageLoad.keys[i]->key << " ";
                 // Check if keys are equals
                 if(pageLoad.keys[i]->key == key){
@@ -172,6 +175,7 @@ public:
                         }
                     }
                     isFindFinished = true;
+                    isFound = true;
                     break;
                 }
                 else if(key < pageLoad.keys[i]->key){
@@ -179,7 +183,8 @@ public:
                     // TODO
                     if(!pageLoad.isLeaf){
                         // READ child Page from Disk
-                        rootDirDisk = pageLoad.children_pDisk[0];
+                        rootDirDisk = pageLoad.children_pDisk[i];
+                        ChildPageSelected = true;
                     }
                     else{
                         isFindFinished = true;
@@ -187,8 +192,22 @@ public:
                     break;
                 }
             } // End For Loop for this Page
+            // Si llegaste al ultimo record del page --> go to last child Page
+            //if(i == pageLoad.currentKeys && !isFound && !pageLoad.isLeaf && !ChildPageSelected){
+            if(i == pageLoad.currentKeys && !isFound && !ChildPageSelected){
+                if(!pageLoad.isLeaf){
+                    cout << "Go child Right\n";
+                    rootDirDisk = pageLoad.children_pDisk[i];
+                }
+                else{
+                    break;
+                }
+            }
+        } // end While
+        if(!isFound){
+            cout << "\n Keyword Not found =( \n";
+            cout << '\n';
         }
-        cout << '\n';
     }
 
     string getIdioma(int idx){

@@ -12,6 +12,6 @@ int main() {
 //    treeIndex.Execute();
 //    treeIndex.print();
 //    treeIndex.save();
-    treeIndex.Find("aardvarks");
+    treeIndex.Find("atas");
     return 0;
 }
